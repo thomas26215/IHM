@@ -4,6 +4,9 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 import javafx.scene.text.Text;
 import javafx.scene.paint.Color;
@@ -28,7 +31,8 @@ public class exo1 extends Application {
         primaryStage.setResizable(false);
         primaryStage.setTitle("Fenêtre JavaFX");
 
-        // définition d’un conteneur VBox qui arrange les sous-composants sur une seule colonne.
+        // définition d’un conteneur VBox qui arrange les sous-composants sur une seule
+        // colonne.
         VBox vbox = new VBox();
         vbox.setAlignment(Pos.CENTER);
 
@@ -41,12 +45,30 @@ public class exo1 extends Application {
         vbox.setMargin(text, new Insets(20, 50, 20, 50));
         vbox.getChildren().addAll(text);
 
+        // Ajout de saisie de texte
+        TextField textField = new TextField();
+        vbox.getChildren().addAll(textField);
+
         // Ajout d’un bouton dans le conteneur vbox
         Button button = new Button("Compris !");
         vbox.getChildren().addAll(button);
 
-        // spécification de la scène avec la Xbox
+        // spécification de la scène avec la Vbox
         primaryStage.setScene(new Scene(vbox));
+
+        // Ajout de boutons radios
+        RadioButton javaFXButton = new RadioButton("JavaFX");
+        RadioButton swingButton = new RadioButton("Swing");
+        RadioButton autreButton = new RadioButton("Autre");
+
+        // Ajout des boutons radio avec la Vbox
+        vbox.getChildren().addAll(javaFXButton, swingButton, autreButton);
+
+        // Regroupement des boutons radio
+        ToggleGroup toogleGroupe = new ToggleGroup();
+        javaFXButton.setToggleGroup(toogleGroupe);
+        swingButton.setToggleGroup(toogleGroupe);
+        autreButton.setToggleGroup(toogleGroupe);
 
         // rendre la fenêtre visible
         primaryStage.show();
